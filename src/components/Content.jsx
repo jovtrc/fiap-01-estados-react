@@ -1,14 +1,17 @@
+import { useContext } from "react";
 import html2canvas from "html2canvas";
+import { ProfileContext } from "../contexts/ContextList";
 import { useRef } from "react";
 
-export const Content = ({ name, role, picture, bio }) => {
+export const Content = () => {
   const personCard = useRef();
+  const { name, role, picture, bio } = useContext(ProfileContext);
 
-  const personName = name.name || "Nome da pessoa";
-  const personRole = role.role || "Cargo da pessoa";
-  const personPicture = picture.picture || "https://thispersondoesnotexist.com";
+  const personName = name || "Nome da pessoa";
+  const personRole = role || "Cargo da pessoa";
+  const personPicture = picture || "https://thispersondoesnotexist.com";
   const personBio =
-    bio.bio ||
+    bio ||
     "Resumo sobre a pessoa. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
 
   const handleCapture = async () => {
@@ -37,7 +40,7 @@ export const Content = ({ name, role, picture, bio }) => {
         <img
           src={personPicture}
           alt={`Foto de ${personName}`}
-          className="w-40 rounded-full border-5 border-[#f5f5f5] shrink-0 grow"
+          className="size-40 rounded-full border-5 border-[#f5f5f5] shrink-0 grow text-transparent"
         />
 
         <div className="w-10/12">
