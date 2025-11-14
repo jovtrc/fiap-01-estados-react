@@ -1,13 +1,12 @@
-import { useContext } from "react";
-import { InputWithLabel } from "./Common/InputWithLabel";
-import { ProfileContext } from "../contexts/ProfileContext";
+import { InputWithLabel } from "../Common/InputWithLabel";
+import { useProfile } from "../../contexts/ProfileContext";
 
 export const UserFields = () => {
   const { name, setName, role, setRole, picture, setPicture, bio, setBio } =
-    useContext(ProfileContext);
+    useProfile();
 
   return (
-    <>
+    <div className="pb-8">
       <InputWithLabel
         labelName="Seu nome:"
         name="name"
@@ -49,6 +48,6 @@ export const UserFields = () => {
           onChange={(event) => setBio(event.target.value)}
         />
       </div>
-    </>
+    </div>
   );
 };

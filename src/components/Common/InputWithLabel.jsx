@@ -7,6 +7,7 @@ export const InputWithLabel = ({
   value,
   onChange,
   labelName,
+  type,
   ...props
 }) => {
   return (
@@ -20,6 +21,7 @@ export const InputWithLabel = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        type={type}
       />
     </div>
   );

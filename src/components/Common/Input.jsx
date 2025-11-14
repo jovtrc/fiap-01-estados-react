@@ -1,7 +1,17 @@
-export const Input = ({ name, id, placeholder, value, onChange, ...props }) => {
+export const Input = ({
+  name,
+  id,
+  placeholder,
+  value,
+  onChange,
+  type,
+  ...props
+}) => {
+  const inputType = type || "text";
+
   return (
     <input
-      type="text"
+      type={inputType}
       name={name}
       id={id}
       placeholder={placeholder}

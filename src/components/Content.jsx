@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import html2canvas from "html2canvas";
-import { ProfileContext } from "../contexts/ContextList";
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
+import { useProfile } from "../contexts/ProfileContext";
 
 export const Content = () => {
   const personCard = useRef();
-  const { name, role, picture, bio } = useContext(ProfileContext);
+  const { name, role, picture, bio, links, githubUser } = useProfile();
 
   const personName = name || "Nome da pessoa";
   const personRole = role || "Cargo da pessoa";
@@ -35,18 +34,57 @@ export const Content = () => {
 
       <div
         ref={personCard}
-        className="w-3xl bg-[#fafafa] h-84 p-4 flex items-center gap-6 rounded shadow-lg"
+        className="bg-[#fafafa] w-3xl rounded shadow-lg overflow-hidden"
       >
-        <img
-          src={personPicture}
-          alt={`Foto de ${personName}`}
-          className="size-40 rounded-full border-5 border-[#f5f5f5] shrink-0 grow text-transparent"
-        />
+        <div className="px-4 py-8 flex items-center gap-6 ">
+          <img
+            src={personPicture}
+            alt={`Foto de ${personName}`}
+            className="size-40 rounded-full border-5 border-[#f5f5f5] shrink-0 grow text-transparent"
+          />
 
-        <div className="w-10/12">
-          <h2 className="font-black text-3xl mt-4 ml-6">{personName}</h2>
-          <h3 className="font-semibold text-xl mt-2 ml-6">{personRole}</h3>
-          <p className="font-normal text-base mt-4 ml-6 mr-4">{personBio}</p>
+          <div className="w-10/12">
+            <h2 className="font-black text-3xl mt-4 ml-6">{personName}</h2>
+            <h3 className="font-semibold text-xl mt-2 ml-6">{personRole}</h3>
+
+            {!githubUser.followers.enable &&
+            !githubUser.repositories.enable ? null : (
+              <div className="flex gap-4 mt-4 ml-6">
+                {githubUser.followers.enable && (
+                  <p className="text-sm">
+                    <span className="font-bold">Seguidores</span>{" "}
+                    {githubUser.followers.total || 0}
+                  </p>
+                )}
+
+                {githubUser.repositories.enable && (
+                  <p className="text-sm">
+                    <span className="font-bold">Repositórios</span>{" "}
+                    {githubUser.repositories.total || 0}
+                  </p>
+                )}
+              </div>
+            )}
+            <p className="font-normal text-base mt-4 ml-6 mr-4">{personBio}</p>
+          </div>
+        </div>
+
+        <div className="border-t-2 px-4 py-8">
+          <h2>Links</h2>
+          {links.map((link) => (
+            <Fragment key={link.id}>
+              {link.url && (
+                <a
+                  href={link.url}
+                  className="block text-blue-500 underline mt-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label || link.url}
+                </a>
+              )}
+            </Fragment>
+          ))}
         </div>
       </div>
     </main>
