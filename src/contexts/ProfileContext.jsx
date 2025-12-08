@@ -1,16 +1,5 @@
-import { useContext, useState, createContext } from "react";
-
-const ProfileContext = createContext({});
-
-export const useProfile = () => {
-  const context = useContext(ProfileContext);
-
-  if (!context) {
-    throw new Error("useProfile must be used within a ProfileContextProvider");
-  }
-
-  return context;
-};
+import { useState } from "react";
+import { ProfileContext } from "../hooks/useProfile";
 
 export const ProfileContextProvider = ({ children }) => {
   const [name, setName] = useState("");

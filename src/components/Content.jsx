@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 import { Fragment, useRef } from "react";
-import { useProfile } from "../contexts/ProfileContext";
+import { useProfile } from "../hooks/useProfile";
 
 export const Content = () => {
   const personCard = useRef();

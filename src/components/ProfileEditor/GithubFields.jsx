@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { InputWithLabel } from "../Common/InputWithLabel";
 import { fetchGitHubUser } from "../../services/GitHubUserApi";
-import { useProfile } from "../../contexts/ProfileContext";
+import { useProfile } from "../../hooks/useProfile";
 
 export const GithubFields = () => {
   const { setName, setRole, setPicture, githubUser, setGithubUser } =

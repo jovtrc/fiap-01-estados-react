@@ -1,5 +1,5 @@
 import { InputWithLabel } from "../Common/InputWithLabel";
-import { useProfile } from "../../contexts/ProfileContext";
+import { useProfile } from "../../hooks/useProfile";
 
 export const LinksFields = () => {
   const { links, setLinks } = useProfile();
