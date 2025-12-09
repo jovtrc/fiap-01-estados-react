@@ -1,0 +1,17 @@
+import { initializeApp } from "firebase/app";
+import { initializeUI } from "@firebase-oss/ui-core";
+
+const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+};
+
+export const app = initializeApp(firebaseConfig);
+
+export const ui = initializeUI({
+  app,
+});

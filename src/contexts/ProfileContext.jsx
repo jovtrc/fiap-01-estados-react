@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { ProfileContext } from "../hooks/useProfile";
+import { User } from "firebase/auth";
 
 export const ProfileContextProvider = ({ children }) => {
+  const [authenticatedUser, setAuthenticatedUser] = useState(null);
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [picture, setPicture] = useState("");
@@ -34,6 +36,8 @@ export const ProfileContextProvider = ({ children }) => {
         setLinks,
         githubUser,
         setGithubUser,
+        authenticatedUser,
+        setAuthenticatedUser,
       }}
     >
       {children}
